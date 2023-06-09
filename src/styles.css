@@ -1,0 +1,61 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  display: block;
+}
+
+.breed-select {
+  font-size: 24px;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.cat-info {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px 15px;
+}
+
+.cat_photo {
+  margin-right: 40px;
+}
+
+.descr_container {
+  max-width: 500px;
+  padding: 40px;
+  border: 4px solid gray;
+  border-radius: 15%;
+}
+
+.cat_name {
+  font-size: 48px;
+  line-height: 1.15;
+}
+.cat_descr,
+.cat_temperament {
+  font-size: 26px;
+}
+
+.is-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
