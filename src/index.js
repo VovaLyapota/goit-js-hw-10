@@ -1,12 +1,11 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const selectEl = document.querySelector('.breed-select');
 const infoBreedContainer = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
-const error = document.querySelector('.error');
 
 hideSelect();
-hideError();
 
 fetchBreeds()
   .then(response => {
@@ -14,10 +13,7 @@ fetchBreeds()
     showSelect();
     return addfechedBreeds(response);
   })
-  .catch(error => {
-    showError();
-    hideLoader();
-  });
+  .catch(onError);
 
 function addfechedBreeds(breeds) {
   selectEl.insertAdjacentHTML(
@@ -32,7 +28,6 @@ selectEl.addEventListener('change', onChangeClick);
 
 function onChangeClick(event) {
   const changedBreed = event.currentTarget.value;
-  hideError();
   showLoader();
 
   infoBreedContainer.innerHTML = '';
@@ -43,10 +38,12 @@ function onChangeClick(event) {
 
       paintFetchedBreedMarkup(response);
     })
-    .catch(error => {
-      showError();
-      hideLoader();
-    });
+    .catch(onError);
+}
+
+function onError() {
+  hideLoader();
+  Notify.failure('Oops! Something went wrong! Try reloading the page!');
 }
 
 function paintFetchedBreedMarkup(fetchedCatInfo) {
@@ -64,14 +61,6 @@ function showLoader() {
 
 function hideLoader() {
   loader.classList.add('is-hidden');
-}
-
-function showError() {
-  error.classList.remove('is-hidden');
-}
-
-function hideError() {
-  error.classList.add('is-hidden');
 }
 
 function showSelect() {
